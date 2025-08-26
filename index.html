@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burudani App - Stream Live TV, Sports & Movies</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 25%, #8e44ad 50%, #3742fa 75%, #4ecdc4 100%);
+            min-height: 100vh;
+        }
+        
+        .app-logo {
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            width: 200px;
+            height: 200px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .store-button {
+            background: #000;
+            border-radius: 12px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: white;
+            min-width: 200px;
+        }
+        
+        .store-button:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+        
+        .carousel-container {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .screenshot-placeholder {
+            background: #000;
+            border-radius: 20px;
+            aspect-ratio: 9/16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .carousel-nav.prev {
+            left: 20px;
+        }
+        
+        .carousel-nav.next {
+            right: 20px;
+        }
+        
+        .dots-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .dot.active {
+            background: white;
+        }
+        
+        @media (max-width: 768px) {
+            .app-logo {
+                width: 150px;
+                height: 150px;
+                font-size: 14px;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .store-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .screenshots-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="hero-content flex items-center justify-between max-w-6xl mx-auto">
+            <!-- App Logo -->
+            <div class="app-logo">
+                APP LOGO
+            </div>
+            
+            <!-- App Info -->
+            <div class="flex-1 ml-12">
+                <h1 class="text-5xl font-bold text-white mb-4">Burudani App</h1>
+                <p class="text-white text-lg mb-8 max-w-lg leading-relaxed">
+                    Stream 1000+ Live Channels • Sports • News • Movies. Access premium content from around the world with crystal clear quality. Entertainment that never stops, anywhere you go.
+                </p>
+                
+                <!-- Store Buttons -->
+                <div class="store-buttons flex gap-4">
+                    <a href="#" class="store-button">
+                        <i class="fab fa-apple text-2xl"></i>
+                        <div>
+                            <div class="text-xs">Download on the</div>
+                            <div class="font-bold">App Store</div>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="store-button">
+                        <i class="fab fa-google-play text-2xl"></i>
+                        <div>
+                            <div class="text-xs">GET IT ON</div>
+                            <div class="font-bold">Google Play</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features Carousel -->
+        <div class="carousel-container max-w-6xl mx-auto relative">
+            <button class="carousel-nav prev" onclick="prevSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="text-center text-white">
+                <h2 class="text-3xl font-bold mb-4" id="carousel-title">6000+ Live TV Channels</h2>
+                <p class="text-lg opacity-90" id="carousel-text">Access thousands of live TV channels from around the world. Sports, news, entertainment, and more in multiple languages.</p>
+            </div>
+            
+            <button class="carousel-nav next" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="dots-container">
+                <div class="dot active" onclick="currentSlide(1)"></div>
+                <div class="dot" onclick="currentSlide(2)"></div>
+                <div class="dot" onclick="currentSlide(3)"></div>
+                <div class="dot" onclick="currentSlide(4)"></div>
+            </div>
+        </div>
+        
+        <!-- Screenshots Section -->
+        <div class="max-w-6xl mx-auto mt-16">
+            <h2 class="text-4xl font-bold text-white mb-8">Screenshots</h2>
+            <div class="screenshots-grid grid grid-cols-4 gap-6">
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 1
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 2
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 3
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 4
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-80 py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-white opacity-70">
+                Created with love from Brazil by <a href="#" class="text-blue-400 hover:text-blue-300">Burudani Corp</a> fork on <a href="#" class="text-blue-400 hover:text-blue-300">Github</a>.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlideIndex = 1;
+        
+        const slides = [
+            {
+                title: "6000+ Live TV Channels",
+                text: "Access thousands of live TV channels from around the world. Sports, news, entertainment, and more in multiple languages."
+            },
+            {
+                title: "Sports, Music & News",
+                text: "Watch live sports events, music concerts, and breaking news from premium channels. Never miss your favorite content again."
+            },
+            {
+                title: "Movies & Entertainment",
+                text: "Stream the latest movies and TV shows in HD quality. Endless entertainment for the whole family, available 24/7."
+            },
+            {
+                title: "Simple & User-Friendly",
+                text: "Easy to use interface designed for everyone. Quick setup, smooth streaming, and intuitive navigation for the best experience."
+            }
+        ];
+        
+        function showSlide(n) {
+            if (n > slides.length) currentSlideIndex = 1;
+            if (n < 1) currentSlideIndex = slides.length;
+            
+            const slide = slides[currentSlideIndex - 1];
+            document.getElementById('carousel-title').textContent = slide.title;
+            document.getElementById('carousel-text').textContent = slide.text;
+            
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex - 1);
+            });
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlideIndex += 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlideIndex -= 1);
+        }
+        
+        function currentSlide(n) {
+            showSlide(currentSlideIndex = n);
+        }
+        
+        // Auto-advance slides
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
+    
+    
