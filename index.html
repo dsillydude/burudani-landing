@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Burudani App - Stream Live TV, Sports & Movies</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -63,6 +63,10 @@
             color: white;
             font-weight: bold;
             font-size: 14px;
+            /* ADDED: Ensure screenshots don't shrink */
+            flex-shrink: 0;
+            width: 45vw; /* Set width relative to viewport width */
+            max-width: 200px; /* Set a max width for larger screens */
         }
         
         .carousel-nav {
@@ -111,16 +115,21 @@
         .dot.active {
             background: white;
         }
+
+        /* ADDED: Hide scrollbar for a cleaner look */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
         
         @media (max-width: 768px) {
             .app-logo {
                 width: 150px;
                 height: 150px;
                 font-size: 14px;
-            }
-            .screenshots-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
             }
         }
     </style>
@@ -174,7 +183,7 @@
         
         <div class="max-w-6xl mx-auto mt-16">
             <h2 class="text-4xl font-bold text-white text-center md:text-left mb-8">Screenshots</h2>
-            <div class="screenshots-grid grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
                 <div class="screenshot-placeholder">
                     SCREENSHOT 1
                 </div>
@@ -186,6 +195,12 @@
                 </div>
                 <div class="screenshot-placeholder">
                     SCREENSHOT 4
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 5
+                </div>
+                 <div class="screenshot-placeholder">
+                    SCREENSHOT 6
                 </div>
             </div>
         </div>
