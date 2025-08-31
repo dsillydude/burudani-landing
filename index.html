@@ -23,21 +23,21 @@
             font-size: 18px;
             font-weight: bold;
             color: white;
-            flex-shrink: 0; /* Prevents the logo from shrinking */
+            flex-shrink: 0; 
         }
         
         .store-button {
             background: #000;
             border-radius: 12px;
-            padding: 16px 28px; /* Increased padding for a better look */
-            display: inline-flex; /* Use inline-flex for better alignment */
+            padding: 16px 28px; 
+            display: inline-flex; 
             align-items: center;
-            justify-content: center; /* Center content within the button */
+            justify-content: center; 
             gap: 12px;
             transition: transform 0.2s;
             text-decoration: none;
             color: white;
-            min-width: 240px; /* Adjusted min-width */
+            min-width: 240px; 
         }
         
         .store-button:hover {
@@ -63,10 +63,9 @@
             color: white;
             font-weight: bold;
             font-size: 14px;
-            /* ADDED: Ensure screenshots don't shrink */
             flex-shrink: 0;
-            width: 45vw; /* Set width relative to viewport width */
-            max-width: 200px; /* Set a max width for larger screens */
+            width: 45vw; 
+            max-width: 200px; 
         }
         
         .carousel-nav {
@@ -116,13 +115,12 @@
             background: white;
         }
 
-        /* ADDED: Hide scrollbar for a cleaner look */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
         .hide-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         
         @media (max-width: 768px) {
@@ -158,6 +156,29 @@
                 </div>
             </div>
         </div>
+
+        <div class="max-w-6xl mx-auto mt-12"> <h2 class="text-4xl font-bold text-white text-center md:text-left mb-8">Screenshots</h2>
+            <div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 1
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 2
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 3
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 4
+                </div>
+                <div class="screenshot-placeholder">
+                    SCREENSHOT 5
+                </div>
+                 <div class="screenshot-placeholder">
+                    SCREENSHOT 6
+                </div>
+            </div>
+        </div>
         
         <div class="carousel-container max-w-6xl mx-auto relative">
             <button class="carousel-nav prev" onclick="prevSlide()">
@@ -181,29 +202,6 @@
             </div>
         </div>
         
-        <div class="max-w-6xl mx-auto mt-16">
-            <h2 class="text-4xl font-bold text-white text-center md:text-left mb-8">Screenshots</h2>
-            <div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
-                <div class="screenshot-placeholder">
-                    SCREENSHOT 1
-                </div>
-                <div class="screenshot-placeholder">
-                    SCREENSHOT 2
-                </div>
-                <div class="screenshot-placeholder">
-                    SCREENSHOT 3
-                </div>
-                <div class="screenshot-placeholder">
-                    SCREENSHOT 4
-                </div>
-                <div class="screenshot-placeholder">
-                    SCREENSHOT 5
-                </div>
-                 <div class="screenshot-placeholder">
-                    SCREENSHOT 6
-                </div>
-            </div>
-        </div>
     </div>
     
     <footer class="bg-black bg-opacity-80 py-8 mt-16">
@@ -244,7 +242,6 @@
             document.getElementById('carousel-title').textContent = slide.title;
             document.getElementById('carousel-text').textContent = slide.text;
             
-            // Update dots
             const dots = document.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlideIndex - 1);
@@ -263,10 +260,8 @@
             showSlide(currentSlideIndex = n);
         }
 
-        // Initialize first slide on page load
         showSlide(currentSlideIndex);
         
-        // Auto-advance slides
         setInterval(nextSlide, 5000);
     </script>
 </body>
