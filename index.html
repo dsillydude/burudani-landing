@@ -12,16 +12,19 @@
             min-height: 100vh;
         }
         
-    .app-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30%;   /* more curved edges */
-    width: 160px;
-    height: 160px;
-    flex-shrink: 0;
-    padding: 0.5rem;
-    background: transparent;
+  .app-logo {
+  width: 160px;
+  height: 160px;
+  border-radius: 30%;       /* smooth edges */
+  overflow: hidden;         /* cuts the image corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* makes sure it fills smoothly */
 }
 
 
