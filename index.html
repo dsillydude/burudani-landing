@@ -54,10 +54,11 @@
             position: relative;
         }
         
+        /* Modified styling for "free" screenshots */
         .screenshot-placeholder {
-            background: #000;
+            background: transparent; /* Make background transparent */
             border-radius: 20px;
-            aspect-ratio: 9/16;
+            /* Removed aspect-ratio to let image define dimensions */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -65,11 +66,16 @@
             font-weight: bold;
             font-size: 14px;
             flex-shrink: 0;
-            overflow: hidden; /* Added to contain the image corners */
+            overflow: hidden; 
 
-            /* Increased sizes */
-            width: 60vw;      /* bigger relative width */
-            max-width: 320px;   /* larger max size */
+            width: 60vw;      
+            max-width: 320px;   
+        }
+
+        .screenshot-placeholder img {
+            width: 100%;
+            height: auto; /* Allow image to scale height naturally */
+            object-fit: contain; /* Ensure the entire image is visible */
         }
         
         .carousel-nav {
@@ -165,19 +171,19 @@
             <div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
                 
                 <div class="screenshot-placeholder">
-                   <img src="https://i.postimg.cc/rFym8Z1p/20250831-1647-Customized-Streaming-Interface-remix-01k418an84f51smbg887yzcfj3-portrait.png" alt="App Screenshot 1" class="w-full h-full object-cover">
+                   <img src="https://i.postimg.cc/rFym8Z1p/20250831-1647-Customized-Streaming-Interface-remix-01k418an84f51smbg887yzcfj3-portrait.png" alt="App Screenshot 1" class="w-full h-full object-contain">
                 </div>
 
                 <div class="screenshot-placeholder">
-                   <img src="https://i.postimg.cc/vBdYC08b/home-screen-design-portrait.png" alt="App Screenshot 2" class="w-full h-full object-cover">
+                   <img src="https://i.postimg.cc/vBdYC08b/home-screen-design-portrait.png" alt="App Screenshot 2" class="w-full h-full object-contain">
                 </div>
 
                 <div class="screenshot-placeholder">
-                   <img src="https://i.postimg.cc/02tNrGn0/Screenshot-20250823-203856-Nix-Swahili-portrait.png" alt="App Screenshot 3" class="w-full h-full object-cover">
+                   <img src="https://i.postimg.cc/02tNrGn0/Screenshot-20250823-203856-Nix-Swahili-portrait.png" alt="App Screenshot 3" class="w-full h-full object-contain">
                 </div>
 
                 <div class="screenshot-placeholder">
-                   <img src="https://i.postimg.cc/6QZ6HkXM/Screenshot-20250826-132911-Burudani-App-portrait.png" alt="App Screenshot 4" class="w-full h-full object-cover">
+                   <img src="https://i.postimg.cc/6QZ6HkXM/Screenshot-20250826-132911-Burudani-App-portrait.png" alt="App Screenshot 4" class="w-full h-full object-contain">
                 </div>
 
             </div>
