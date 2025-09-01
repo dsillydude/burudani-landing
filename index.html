@@ -12,22 +12,20 @@
             min-height: 100vh;
         }
         
-  .app-logo {
-  width: 160px;
-  height: 160px;
-  border-radius: 20%;       /* smooth edges */
-  overflow: hidden;         /* cuts the image corners */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.app-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;        /* makes sure it fills smoothly */
-}
-
-
+        .app-logo {
+            width: 160px;
+            height: 160px;
+            border-radius: 20%;      /* smooth edges */
+            overflow: hidden;        /* cuts the image corners */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .app-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;       /* makes sure it fills smoothly */
+        }
         
         .store-button {
             background: #000;
@@ -57,22 +55,22 @@
         }
         
         .screenshot-placeholder {
-    background: #000;
-    border-radius: 20px;
-    aspect-ratio: 9/16;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    flex-shrink: 0;
+            background: #000;
+            border-radius: 20px;
+            aspect-ratio: 9/16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+            overflow: hidden; /* Added to contain the image corners */
 
-    /* Increased sizes */
-    width: 60vw;         /* bigger relative width */
-    max-width: 320px;    /* larger max size */
-}
-
+            /* Increased sizes */
+            width: 60vw;      /* bigger relative width */
+            max-width: 320px;   /* larger max size */
+        }
         
         .carousel-nav {
             position: absolute;
@@ -148,7 +146,7 @@
             <div class="flex-1 text-center md:text-left">
                 <h1 class="text-5xl font-bold text-white mb-4">Burudani App</h1>
                 <p class="text-white text-lg mb-8 max-w-lg leading-relaxed mx-auto md:mx-0">
-                   Tazama Channeli zaidi ya 1000 kutoka sehemu mbalimbali duniani,Kuanzia Mpira, Tamthilia, Movies, Habari na mengine mengi!
+                    Tazama Channeli zaidi ya 1000 kutoka sehemu mbalimbali duniani,Kuanzia Mpira, Tamthilia, Movies, Habari na mengine mengi!
                 </p>
                 
                 <div class="flex justify-center md:justify-start">
@@ -165,24 +163,23 @@
         <div class="max-w-6xl mx-auto mt-12"> 
             <h2 class="text-4xl font-bold text-white text-center md:text-left mb-8">Kidokezo Cha App</h2>
             <div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
+                
                 <div class="screenshot-placeholder">
-                    SCREENSHOT 1
+                   <img src="https://i.postimg.cc/rFym8Z1p/20250831-1647-Customized-Streaming-Interface-remix-01k418an84f51smbg887yzcfj3-portrait.png" alt="App Screenshot 1" class="w-full h-full object-cover">
                 </div>
-                <div class="https://i.postimg.cc/rFym8Z1p/20250831-1647-Customized-Streaming-Interface-remix-01k418an84f51smbg887yzcfj3-portrait.png">
-                    SCREENSHOT 2
-                </div>
+
                 <div class="screenshot-placeholder">
-                    SCREENSHOT 3
+                   <img src="https://i.postimg.cc/vBdYC08b/home-screen-design-portrait.png" alt="App Screenshot 2" class="w-full h-full object-cover">
                 </div>
+
                 <div class="screenshot-placeholder">
-                    SCREENSHOT 4
+                   <img src="https://i.postimg.cc/02tNrGn0/Screenshot-20250823-203856-Nix-Swahili-portrait.png" alt="App Screenshot 3" class="w-full h-full object-cover">
                 </div>
+
                 <div class="screenshot-placeholder">
-                    SCREENSHOT 5
+                   <img src="https://i.postimg.cc/6QZ6HkXM/Screenshot-20250826-132911-Burudani-App-portrait.png" alt="App Screenshot 4" class="w-full h-full object-cover">
                 </div>
-                 <div class="screenshot-placeholder">
-                    SCREENSHOT 6
-                </div>
+
             </div>
         </div>
         
