@@ -21,7 +21,6 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        /* --- SIZE REDUCED HERE --- */
         .app-logo {
             width: 120px;
             height: 120px;
@@ -106,52 +105,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- NEW Testimonial Slider Styles --- */
-        .testimonial-slider-container {
-            width: 100%;
-            overflow: hidden;
-            padding: 1rem 0;
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-        /* Fade effect on the edges */
-        .testimonial-slider-container::before,
-        .testimonial-slider-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 50px;
-            z-index: 2;
-        }
-        .testimonial-slider-container::before {
-            left: 0;
-            background: linear-gradient(to right, rgba(55, 66, 250, 1) 0%, rgba(55, 66, 250, 0) 100%);
-        }
-        .testimonial-slider-container::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(55, 66, 250, 1) 0%, rgba(55, 66, 250, 0) 100%);
-        }
-
-        .testimonial-slider {
-            display: flex;
-            gap: 1rem;
-            width: fit-content;
-            animation: scroll 20s linear infinite;
-        }
-
-        .testimonial-card {
-            flex-shrink: 0;
+        /* --- NEW Contained Testimonial Box Styles --- */
+        .testimonial-box {
             background: rgba(0, 0, 0, 0.4);
-            padding: 0.75rem 1.25rem;
             border-radius: 12px;
-            color: white;
-            white-space: nowrap;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            min-height: 120px; /* Gives space for 3 lines of text */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+
+        .testimonial-content {
+            transition: opacity 0.4s ease-in-out;
         }
     </style>
 </head>
@@ -165,16 +132,14 @@
             
             <div class="flex-1 text-center md:text-left fade-in" style="animation-delay: 0.2s;">
                 <h1 class="text-4xl font-bold text-white mb-4">Burudani App</h1>
-                <p class="text-white text-lg mb-2 max-w-lg leading-relaxed mx-auto md:mx-0">
+                <p class="text-white text-lg mb-4 max-w-lg leading-relaxed mx-auto md:mx-0">
                     Tazama Channeli zaidi ya 1000 kutoka sehemu mbalimbali duniani!
                 </p>
                 
-                <div class="testimonial-slider-container">
-                    <div class="testimonial-slider">
-                        <div class="testimonial-card">"Programu bora kwa ajili ya michezo!" - Alex M.</div>
-                        <div class="testimonial-card">"Chaneli zote za kimataifa... Bomba sana!" - Fatma S.</div>
-                        <div class="testimonial-card">"Programu bora kwa ajili ya michezo!" - Alex M.</div>
-                        <div class="testimonial-card">"Chaneli zote za kimataifa... Bomba sana!" - Fatma S.</div>
+                <div class="testimonial-box">
+                    <div id="testimonial-content" class="testimonial-content">
+                        <p id="testimonial-text" class="text-white text-lg"></p>
+                        <p id="testimonial-author" class="text-white font-bold opacity-80 mt-2"></p>
                     </div>
                 </div>
 
@@ -220,8 +185,8 @@
     </footer>
 
     <script>
+        // --- LOGIC FOR FEATURE SLIDER ---
         let currentSlideIndex = 1;
-        
         const slides = [
             { icon: "fa-tv", title: "6000+ Live TV Channels", text: "Access thousands of live TV channels from around the world. Sports, news, entertainment, and more." },
             { icon: "fa-futbol", title: "Sports, Music & News", text: "Watch live sports events, music concerts, and breaking news from premium channels. Never miss your favorite content." },
@@ -250,6 +215,44 @@
 
         showSlide(currentSlideIndex);
         setInterval(nextSlide, 5000);
+
+
+        // --- NEW LOGIC FOR TESTIMONIAL SLIDER ---
+        let currentTestimonialIndex = 0;
+        const testimonials = [
+            { text: "Programu bora kwa ajili ya michezo! Sasa sipitwi na mechi yoyote.", author: "- Alex M." },
+            { text: "Hatimaye nimepata app yenye chaneli zote za kimataifa nilizokuwa natafuta. Bomba sana!", author: "- Fatma S." },
+            { text: "Rahisi kutumia na inafanya kazi vizuri sana. Pongezi!", author: "- John D." }
+        ];
+
+        const testimonialContent = document.getElementById('testimonial-content');
+        const testimonialText = document.getElementById('testimonial-text');
+        const testimonialAuthor = document.getElementById('testimonial-author');
+
+        function showNextTestimonial() {
+            // Fade out
+            testimonialContent.style.opacity = '0';
+
+            setTimeout(() => {
+                // Update index
+                currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+                
+                // Change content
+                const testimonial = testimonials[currentTestimonialIndex];
+                testimonialText.textContent = `"${testimonial.text}"`;
+                testimonialAuthor.textContent = testimonial.author;
+
+                // Fade in
+                testimonialContent.style.opacity = '1';
+            }, 400); // This delay should match the CSS transition duration
+        }
+
+        // Initial call
+        showNextTestimonial();
+
+        // Set interval to change testimonial
+        setInterval(showNextTestimonial, 5000);
+
     </script>
 </body>
 </html>
