@@ -1,255 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Burudani App - Stream Live TV, Sports & Movies</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Burudani App - Stream Live TV, Sports & Movies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 25%, #8e44ad 50%, #3742fa 75%, #4ecdc4 100%);
-            min-height: 100vh;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .app-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 20%;      
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .app-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .store-button {
-            background: #000;
-            border-radius: 12px;
-            padding: 16px 28px; 
-            display: inline-flex; 
-            align-items: center;
-            justify-content: center; 
-            gap: 12px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            color: white;
-            min-width: 240px; 
-        }
-        
-        .store-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-            color: white;
-        }
-        
-        .carousel-container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 20px;
-            padding: 40px 20px;
-            margin: 40px 0;
-            position: relative;
-        }
-        
-        .screenshot-placeholder {
-            background: transparent;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            overflow: hidden; 
-            width: 70vw;      
-            max-width: 380px;   
-        }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e5e5e5;
+      line-height: 1.6;
+    }
 
-        .screenshot-placeholder img {
-            width: 100%;
-            height: auto; 
-            object-fit: contain; 
-        }
-        
-        .carousel-nav {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2); border: none; color: white;
-            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
-            transition: background 0.2s; z-index: 10;
-        }
-        .carousel-nav:hover { background: rgba(255, 255, 255, 0.3); }
-        .carousel-nav.prev { left: 20px; }
-        .carousel-nav.next { right: 20px; }
-        
-        .dots-container { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: background 0.2s; }
-        .dot.active { background: white; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .fade-in { animation: fadeInAnimation 0.8s ease-in-out forwards; opacity: 0; }
-        @keyframes fadeInAnimation {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* Hero Section */
+    .hero {
+      padding: 60px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
 
-        .testimonial-box {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            min-height: 120px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    .title-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
 
-        .testimonial-content {
-            transition: opacity 0.4s ease-in-out;
-        }
-    </style>
+    .app-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 22px;
+      object-fit: cover;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, #1d9bf0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      word-break: break-word;
+    }
+
+    .hero-content .tagline {
+      font-size: 1.3rem;
+      color: #b0b0b0;
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    .social-proof {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      color: #b0b0b0;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .proof-item .value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .proof-item .label {
+      font-size: 0.9rem;
+    }
+
+    .stars {
+      color: #1d9bf0;
+    }
+
+    .age-rating {
+      border: 1px solid #b0b0b0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #1d9bf0, #4cafef);
+      color: white;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(29, 155, 240, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(29, 155, 240, 0.5);
+    }
+
+    .screenshots-title {
+      margin: 60px 0 20px 0;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    /* --- Swiper Screenshots --- */
+    .swiper {
+      padding: 20px 0;
+    }
+
+    .swiper-slide {
+      width: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .swiper-slide img {
+      width: 300px; /* larger size */
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 0;
+      background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(29, 155, 240, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-card .emoji {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #b0b0b0;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: #050505;
+    }
+
+    .footer p {
+      color: #808080;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+
+      .app-logo {
+        width: 90px;
+        height: 90px;
+      }
+
+      .hero-content .tagline {
+        font-size: 1.1rem;
+        padding: 0 10px;
+      }
+
+      .download-btn {
+        padding: 16px 35px;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .title-container {
+        gap: 15px;
+      }
+
+      .social-proof {
+        gap: 15px;
+      }
+
+      .screenshots-title {
+        font-size: 1.8rem;
+      }
+
+      .swiper-slide img {
+        width: 90vw; /* expand on small screens */
+      }
+    }
+  </style>
 </head>
-<body class="gradient-bg">
-    <div class="container mx-auto px-4 py-12">
-        <div class="flex flex-col md:flex-row items-center justify-center md:justify-between max-w-6xl mx-auto gap-8 md:gap-4">
-            
-            <div class="app-logo fade-in">
-                <img src="https://i.postimg.cc/Hk1gYz1K/app-icon.png" alt="Burudani App Logo" class="w-full h-full object-contain">
-            </div>
-            
-            <div class="flex-1 text-center md:text-left fade-in" style="animation-delay: 0.2s;">
-                <h1 class="text-4xl font-bold text-white mb-4">Burudani App</h1>
-                <p class="text-white text-lg mb-4 max-w-lg leading-relaxed mx-auto md:mx-0">
-                    Tazama Channeli zaidi ya 1000 kutoka sehemu mbalimbali duniani!
-                </p>
-                
-                <div class="testimonial-box">
-                    <div id="testimonial-content" class="testimonial-content flex items-center gap-4">
-                        <img id="testimonial-avatar" src="" alt="Testimonial author" class="w-16 h-16 rounded-full object-cover flex-shrink-0">
-                        <div>
-                            <p id="testimonial-text" class="text-white"></p>
-                            <p id="testimonial-author" class="text-white font-bold opacity-80 mt-1"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center md:justify-start">
-                    <a href="https://github.com/dsillydude/burudani-landing/releases/download/burudaniApp/BurudaniAPP.apk" class="store-button" download>
-                        <i class="fas fa-download text-2xl"></i>
-                        <span class="font-bold text-lg">Download</span>
-                    </a>
-                </div>
-            </div>
+<body>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="title-container">
+          <img src="https://i.postimg.cc/Hk1gYz1K/app-icon.png" class="app-logo" alt="Burudani App Logo">
+          <h1>Burudani App</h1>
         </div>
 
-        <div class="max-w-6xl mx-auto mt-16"> 
-            <h2 class="text-4xl font-bold text-white text-center md:text-left mb-8">Kidokezo Cha App</h2>
-            <div class="flex overflow-x-auto gap-6 pb-4 hide-scrollbar">
-                <div class="screenshot-placeholder"><img src="https://i.postimg.cc/N04cKB72/20250831-1647-Customized-Streaming-Interface-remix-01k418an84f51smbg887yzcfj3-portrait.png" alt="App Screenshot 1"></div>
-                <div class="screenshot-placeholder"><img src="https://i.postimg.cc/vBdYC08b/home-screen-design-portrait.png" alt="App Screenshot 2"></div>
-                <div class="screenshot-placeholder"><img src="https://i.postimg.cc/7h7G850T/Screenshot-20250823-203856-Nix-Swahili-portrait.png" alt="App Screenshot 3"></div>
-                <div class="screenshot-placeholder"><img src="https://i.postimg.cc/6QZ6HkXM/Screenshot-20250826-132911-Burudani-App-portrait.png" alt="App Screenshot 4"></div>
-            </div>
+        <p class="tagline">Tazama Channeli zaidi ya 1000 kutoka sehemu mbalimbali duniani!</p>
+
+        <div class="social-proof">
+          <div class="proof-item">
+            <span class="value stars">★★★★☆</span>
+            <span class="label">1.2M reviews</span>
+          </div>
+          <div class="proof-item">
+            <span class="value">10M+</span>
+            <span class="label">downloads</span>
+          </div>
+          <div class="proof-item">
+            <span class="age-rating">Rated for 3+</span>
+            <span class="label">Age Rating</span>
+          </div>
         </div>
-        
-        <div class="carousel-container max-w-6xl mx-auto relative mt-16">
-            <button class="carousel-nav prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-            <div class="text-center text-white px-12">
-                <i id="carousel-icon" class="text-5xl mb-4"></i>
-                <h2 class="text-3xl font-bold mb-4" id="carousel-title"></h2>
-                <p class="text-lg opacity-90" id="carousel-text"></p>
+
+        <a href="https://github.com/dsillydude/burudani-landing/releases/download/burudaniApp/BurudaniAPP.apk" class="download-btn" download>Download Now</a>
+
+        <h2 class="screenshots-title">Kidokezo Cha App</h2>
+        <!-- Swiper Screenshots -->
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="https://i.postimg.cc/N04cKB72/20250831-1647-Customized-Streaming-Interface-remix-01k418an84f51smbg887yzcfj3-portrait.png" alt="Burudani App Interface">
             </div>
-            <button class="carousel-nav next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-            <div class="dots-container">
-                <div class="dot active" onclick="currentSlide(1)"></div><div class="dot" onclick="currentSlide(2)"></div>
-                <div class="dot" onclick="currentSlide(3)"></div><div class="dot" onclick="currentSlide(4)"></div>
+            <div class="swiper-slide">
+              <img src="https://i.postimg.cc/vBdYC08b/home-screen-design-portrait.png" alt="Burudani Home Screen">
             </div>
+            <div class="swiper-slide">
+              <img src="https://i.postimg.cc/7h7G850T/Screenshot-20250823-203856-Nix-Swahili-portrait.png" alt="Burudani Live TV">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://i.postimg.cc/6QZ6HkXM/Screenshot-20250826-132911-Burudani-App-portrait.png" alt="Burudani Sports Channels">
+            </div>
+          </div>
+          <!-- Navigation + Pagination -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
-        
+      </div>
     </div>
-    
-    <footer class="bg-black bg-opacity-80 py-8 mt-16">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-white opacity-70">© 2025 Burudani App. Haki zote zimehifadhiwa.</p>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="emoji">📺</span>
+          <h3>6000+ Live TV Channels</h3>
+          <p>Access thousands of live television channels from around the world in HD quality</p>
         </div>
-    </footer>
+        <div class="feature-card">
+          <span class="emoji">⚽</span>
+          <h3>Sports, Music & News</h3>
+          <p>Watch live sports, music concerts, and breaking news in multiple languages</p>
+        </div>
+        <div class="feature-card">
+          <span class="emoji">🎬</span>
+          <h3>Movies & Entertainment</h3>
+          <p>Enjoy the latest movies, TV shows, and entertainment content on demand</p>
+        </div>
+        <div class="feature-card">
+          <span class="emoji">✨</span>
+          <h3>Simple & User-Friendly</h3>
+          <p>Intuitive interface designed for easy navigation and seamless streaming experience</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // --- LOGIC FOR FEATURE SLIDER ---
-        let currentSlideIndex = 1;
-        const slides = [
-            { icon: "fa-tv", title: "6000+ Live TV Channels", text: "Access thousands of live TV channels from around the world. Sports, news, entertainment, and more." },
-            { icon: "fa-futbol", title: "Sports, Music & News", text: "Watch live sports events, music concerts, and breaking news from premium channels. Never miss your favorite content." },
-            { icon: "fa-film", title: "Movies & Entertainment", text: "Stream the latest movies and TV shows in HD quality. Endless entertainment for the whole family, available 24/7." },
-            { icon: "fa-face-smile", title: "Simple & User-Friendly", text: "Easy to use interface designed for everyone. Quick setup, smooth streaming, and intuitive navigation." }
-        ];
-        
-        function showSlide(n) {
-            if (n > slides.length) currentSlideIndex = 1;
-            if (n < 1) currentSlideIndex = slides.length;
-            const slide = slides[currentSlideIndex - 1];
-            document.getElementById('carousel-icon').className = `fas ${slide.icon} text-5xl mb-4`;
-            document.getElementById('carousel-title').textContent = slide.title;
-            document.getElementById('carousel-text').textContent = slide.text;
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlideIndex - 1);
-            });
-        }
-        function nextSlide() { showSlide(currentSlideIndex += 1); }
-        function prevSlide() { showSlide(currentSlideIndex -= 1); }
-        function currentSlide(n) { showSlide(currentSlideIndex = n); }
-        showSlide(currentSlideIndex);
-        setInterval(nextSlide, 5000);
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Burudani App. Haki zote zimehifadhiwa.</p>
+    </div>
+  </footer>
 
-
-        // --- LOGIC FOR TESTIMONIAL SLIDER ---
-        let currentTestimonialIndex = 0;
-        // Updated testimonials array with avatar images
-        const testimonials = [
-            { avatar: "https://i.postimg.cc/15SD6VTj/Matthias-Ominyi.webp", text: "Nmeipenda App! sipitwi na mechi yoyote.", author: "- Juma Ally." },
-            { avatar: "https://i.postimg.cc/63dJkZYZ/Screenshot-2025-09-01-033220.png", text: "Nimepata app yenye chaneli zote za kimataifa nilizokuwa natafuta. Asanteni sana!", author: "- Ester mkwizu." },
-            { avatar: "https://tse2.mm.bing.net/th/id/OIP.pKPn1Jk_TpR1p-8l0fZrJQHaH3?rs=1&pid=ImgDetMain&o=7&rm=3", text: "Duh sijawahi kuona app kama hii jamani, nawapenda Burudani App", author: "- Mariamu vijora." },
-            { avatar: "https://i.postimg.cc/yYTcTYCY/1517633235580.jpg", text: "Wazee wa spana hii app ni hatari!", author: "- Masanja Jr." }
-        ];
-
-        const testimonialContent = document.getElementById('testimonial-content');
-        const testimonialAvatar = document.getElementById('testimonial-avatar');
-        const testimonialText = document.getElementById('testimonial-text');
-        const testimonialAuthor = document.getElementById('testimonial-author');
-
-        function showNextTestimonial() {
-            testimonialContent.style.opacity = '0';
-            setTimeout(() => {
-                currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-                const testimonial = testimonials[currentTestimonialIndex];
-                
-                // Update content including the avatar
-                testimonialAvatar.src = testimonial.avatar;
-                testimonialText.textContent = `"${testimonial.text}"`;
-                testimonialAuthor.textContent = testimonial.author;
-
-                testimonialContent.style.opacity = '1';
-            }, 400); 
-        }
-
-        // Initial call
-        showNextTestimonial();
-        // Set interval to change testimonial
-        setInterval(showNextTestimonial, 5000);
-
-    </script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 5,
+      grabCursor: true,
+      centeredSlides: false,
+      freeMode: false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
 </body>
 </html>
+
